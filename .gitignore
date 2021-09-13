@@ -2,8 +2,12 @@
 **/.terraform/*
 
 # .tfstate files
-*.tfstate
-*.tfstate.*
+**/terraform.tfstate
+**/terraform.tfstate.*
+
+# Ignore .terraform.lock.hcl. This is being ignored by own knowledge. 
+# However, we need to read more about the significance of this file and if this needs to be ignored from git source control.
+**/.terraform.lock.hcl
 
 # Crash log files
 crash.log
@@ -13,6 +17,9 @@ crash.log
 # version control.
 #
 # example.tfvars
+
+# We are ignoring terraform.tfvars in our case as it is the file that holds AWS programmatic keys.
+**/terraform.tfvars
 
 # Ignore override files as they are usually used to override resources locally and so
 # are not checked in
@@ -27,3 +34,11 @@ override.tf.json
 
 # Include tfplan files to ignore the plan output of command: terraform plan -out=tfplan
 # example: *tfplan*
+
+# Ignore SSH key pairs generated for SSH access to servers.
+**/*.pub
+**/id_rsa
+
+# Ignore file which contains public IP addresses of EC2 instances resulting from local executioner.
+**/public_ip.txt
+
