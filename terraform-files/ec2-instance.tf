@@ -7,7 +7,7 @@ resource "aws_instance" "saltmaster" {
   instance_type          = "t2.micro"
   key_name               = aws_key_pair.linux-ssh-key.id
   subnet_id              = aws_subnet.main-vpc-public-subnet.id
-  vpc_security_group_ids = [aws_security_group.allow-ssh-sg.id, aws_security_group.saltmaster-sg.id]
+  vpc_security_group_ids = [aws_security_group.allow-all-outgoing-sg.id, aws_security_group.allow-ssh-sg.id, aws_security_group.saltmaster-sg.id]
   private_ip             = "10.0.1.4"
   tags = {
     Name      = "saltmaster"
@@ -27,7 +27,7 @@ resource "aws_instance" "my-dev-machine" {
   instance_type          = "t2.micro"
   key_name               = aws_key_pair.linux-ssh-key.id
   subnet_id              = aws_subnet.main-vpc-public-subnet.id
-  vpc_security_group_ids = [aws_security_group.allow-ssh-sg.id]
+  vpc_security_group_ids = [aws_security_group.allow-all-outgoing-sg.id, aws_security_group.allow-ssh-sg.id]
   private_ip             = "10.0.1.5"
   tags = {
     Name      = "my-dev-machine"
@@ -47,7 +47,7 @@ resource "aws_instance" "dev-web-01" {
   instance_type          = "t2.micro"
   key_name               = aws_key_pair.linux-ssh-key.id
   subnet_id              = aws_subnet.main-vpc-public-subnet.id
-  vpc_security_group_ids = [aws_security_group.allow-ssh-sg.id]
+  vpc_security_group_ids = [aws_security_group.allow-all-outgoing-sg.id, aws_security_group.allow-ssh-sg.id]
   private_ip             = "10.0.1.6"
   tags = {
     Name      = "dev-web-01"
@@ -67,7 +67,7 @@ resource "aws_instance" "test-machine" {
   instance_type          = "t2.micro"
   key_name               = aws_key_pair.linux-ssh-key.id
   subnet_id              = aws_subnet.main-vpc-public-subnet.id
-  vpc_security_group_ids = [aws_security_group.allow-ssh-sg.id]
+  vpc_security_group_ids = [aws_security_group.allow-all-outgoing-sg.id, aws_security_group.allow-ssh-sg.id]
   private_ip             = "10.0.1.7"
   tags = {
     Name      = "test-machine"
@@ -87,7 +87,7 @@ resource "aws_instance" "dev-db-01" {
   instance_type          = "t2.micro"
   key_name               = aws_key_pair.linux-ssh-key.id
   subnet_id              = aws_subnet.main-vpc-public-subnet.id
-  vpc_security_group_ids = [aws_security_group.allow-ssh-sg.id]
+  vpc_security_group_ids = [aws_security_group.allow-all-outgoing-sg.id, aws_security_group.allow-ssh-sg.id]
   private_ip             = "10.0.1.8"
   tags = {
     Name      = "dev-db-01"
@@ -104,7 +104,7 @@ resource "aws_instance" "staging-web-01" {
   instance_type		 = "t2.micro"
   key_name		 = aws_key_pair.linux-ssh-key.id
   subnet_id		 = aws_subnet.main-vpc-public-subnet.id
-  vpc_security_group_ids = [aws_security_group.allow-ssh-sg.id]
+  vpc_security_group_ids = [aws_security_group.allow-all-outgoing-sg.id, aws_security_group.allow-ssh-sg.id]
   private_ip		 = "10.0.1.9"
   tags			 = {
     Name		 = "staging-web-01"
@@ -121,7 +121,7 @@ resource "aws_instance" "staging-db-01" {
   instance_type		 = "t2.micro"
   key_name		 = aws_key_pair.linux-ssh-key.id
   subnet_id		 = aws_subnet.main-vpc-public-subnet.id
-  vpc_security_group_ids = [aws_security_group.allow-ssh-sg.id]
+  vpc_security_group_ids = [aws_security_group.allow-all-outgoing-sg.id, aws_security_group.allow-ssh-sg.id]
   private_ip		 = "10.0.1.10"
   tags			 = {
     Name		 = "staging-db-01"
@@ -138,7 +138,7 @@ resource "aws_instance" "prod-web-01" {
   instance_type		 = "t2.micro"
   key_name		 = aws_key_pair.linux-ssh-key.id
   subnet_id		 = aws_subnet.main-vpc-public-subnet.id
-  vpc_security_group_ids = [aws_security_group.allow-ssh-sg.id]
+  vpc_security_group_ids = [aws_security_group.allow-all-outgoing-sg.id, aws_security_group.allow-ssh-sg.id]
   private_ip		 = "10.0.1.11"
   tags			 = {
     Name		 = "prod-web-01"
@@ -155,7 +155,7 @@ resource "aws_instance" "prod-db-01" {
   instance_type		 = "t2.micro"
   key_name		 = aws_key_pair.linux-ssh-key.id
   subnet_id		 = aws_subnet.main-vpc-public-subnet.id
-  vpc_security_group_ids = [aws_security_group.allow-ssh-sg.id]
+  vpc_security_group_ids = [aws_security_group.allow-all-outgoing-sg.id, aws_security_group.allow-ssh-sg.id]
   private_ip		 = "10.0.1.12"
   tags			 = {
     Name		 = "prod-db-01"
